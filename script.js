@@ -22,10 +22,16 @@ messageInput.addEventListener('keypress', function(event) {
 sendButton.addEventListener('click', sendMessage);
 
 // 클리어 버튼 클릭했을 때
-clearButton.addEventListener('click', function() {
-    chatContainer.innerHTML = '<button class="clear-button">삭제</button>';
-    localStorage.removeItem(STORAGE_KEY);
-});
+clearButton.addEventListener('click', clearChat);
+
+function clearChat() {
+    if (confirm('정말로 삭제? 당신은 모든 저장을 잃음')) {
+        chatContainer.innerHTML = '<button class="clear-button">삭제</button>';
+        localStorage.removeItem(STORAGE_KEY);
+        // 새로운 버튼에 이벤트 리스너 추가
+        document.querySelector('.clear-button').addEventListener('click', clearChat);
+    }
+}
 
 // 메시지 전송 함수
 function sendMessage() {
@@ -82,7 +88,7 @@ function createBotMessage(message, loading=false) {
             botElement.className = 'message-bot';
             botElement.innerHTML = `<a href="https://www.dlsite.com/maniax/work/=/product_id/RJ${rjNumber}.html" target="_blank">|___DL___|</a>
             <a href="https://asmr.one/works?keyword=rj${rjNumber}" target="_blank">|___ASMR___|</a>
-            <a href="https://kone.gg/search?k=rj${rjNumber}" target="_blank">|___Kone___|</a>`;
+            <a href="https://kone.gg/s/all?q=rj${rjNumber}" target="_blank">|___Kone___|</a>`;
             chatContainer.appendChild(botElement);
 
             const numberWithoutLastThree = rjNumber.slice(0, -3);
@@ -91,17 +97,11 @@ function createBotMessage(message, loading=false) {
             const thumbnailUrl = `https://img.dlsite.jp/modpub/images2/work/doujin/RJ${rjPrefix}/RJ${rjNumber}_img_main.webp`;
 
             // 이미지 썸네일 표시
-            const thumbnailContainer = document.createElement('div');
-            thumbnailContainer.className = 'thumbnail-container';
             const img = document.createElement('img');
             img.src = thumbnailUrl;
-            img.alt = '썸네일';
+            img.alt = '없는듯?';
             img.className = 'thumbnail-image';
-            img.onerror = function() {
-                this.style.display = 'none';
-            };
-            thumbnailContainer.appendChild(img);
-            chatContainer.appendChild(thumbnailContainer);
+            chatContainer.appendChild(img);
 
         }
     }
@@ -111,6 +111,13 @@ function createBotMessage(message, loading=false) {
         botElement.innerHTML = `<a href="https://hitomi.la/galleries/${message}.html" target="_blank">|___hitomi.la___|</a>
         | <a href="https://litomi.in/manga/${message}" target="_blank">|___litomi.in___|</a>`;
         chatContainer.appendChild(botElement);
+
+        const thumbnailUrl = `https://soujpa.in/start/${message}/${message}_0.avif`;
+        const img = document.createElement('img');
+        img.src = thumbnailUrl;
+        img.alt = '없는듯?';
+        img.className = 'first-page';
+        chatContainer.appendChild(img);
     }
 }
 
