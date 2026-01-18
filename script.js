@@ -23,7 +23,7 @@ sendButton.addEventListener('click', sendMessage);
 
 // 클리어 버튼 클릭했을 때
 clearButton.addEventListener('click', function() {
-    chatContainer.innerHTML = '<button class="clear-button">clr</button>';
+    chatContainer.innerHTML = '<button class="clear-button">삭제</button>';
     localStorage.removeItem(STORAGE_KEY);
 });
 
