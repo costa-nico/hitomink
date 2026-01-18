@@ -10,6 +10,26 @@ window.addEventListener('DOMContentLoaded', function() {
     loadMessages();
 });
 
+// 챗 컨테이너 클릭시 입력 필드 포커스 (메시지 제외)
+chatContainer.addEventListener('click', function(e) {
+    // 클릭된 요소가 메시지나 이미지, 링크가 아니면 포커스
+    if (!e.target.closest('.message-user') && 
+        !e.target.closest('.message-bot') && 
+        !e.target.closest('img') &&
+        !e.target.closest('a')) {
+        messageInput.focus();
+    }
+});
+
+// 배경 클릭시 입력 필드 포커스
+document.body.addEventListener('click', function(e) {
+    // 클릭된 요소가 챗 컨테이너나 입력 영역이 아니면 포커스
+    if (!e.target.closest('.chat-container') && 
+        !e.target.closest('.input-area')) {
+        messageInput.focus();
+    }
+});
+
 // 엔터 키 눌렀을 때
 messageInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -29,7 +49,7 @@ function clearChat() {
         chatContainer.innerHTML = '<button class="clear-button">삭제</button>';
         localStorage.removeItem(STORAGE_KEY);
         // 새로운 버튼에 이벤트 리스너 추가
-        document.querySelector('.clear-button').addEventListener('click', clearChat);
+        document.querySelector('.cle    ar-button').addEventListener('click', clearChat);
     }
 }
 
