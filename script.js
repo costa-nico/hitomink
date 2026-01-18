@@ -99,7 +99,7 @@ function createBotMessage(message, loading=false) {
             // 이미지 썸네일 표시
             const img = document.createElement('img');
             img.src = thumbnailUrl;
-            img.alt = '없는듯?';
+            img.alt = '들어가보셈';
             img.className = 'thumbnail-image';
             chatContainer.appendChild(img);
 
@@ -115,7 +115,7 @@ function createBotMessage(message, loading=false) {
         const thumbnailUrl = `https://soujpa.in/start/${message}/${message}_0.avif`;
         const img = document.createElement('img');
         img.src = thumbnailUrl;
-        img.alt = '없는듯?';
+        img.alt = '들어가보셈';
         img.className = 'first-page';
         chatContainer.appendChild(img);
     }
