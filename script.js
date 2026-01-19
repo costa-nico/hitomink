@@ -49,7 +49,7 @@ function clearChat() {
         chatContainer.innerHTML = '<button class="clear-button">삭제</button>';
         localStorage.removeItem(STORAGE_KEY);
         // 새로운 버튼에 이벤트 리스너 추가
-        document.querySelector('.cle    ar-button').addEventListener('click', clearChat);
+        document.querySelector('.clear-button').addEventListener('click', clearChat);
     }
 }
 
