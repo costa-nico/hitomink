@@ -45,7 +45,7 @@ sendButton.addEventListener('click', sendMessage);
 clearButton.addEventListener('click', clearChat);
 
 function clearChat() {
-    if (confirm('정말로 삭제? 당신은 모든 저장을 잃음')) {
+    if (confirm('모든 대화를 삭제하시겠습니까?')) {
         chatContainer.innerHTML = '<button class="clear-button">삭제</button>';
         localStorage.removeItem(STORAGE_KEY);
         // 새로운 버튼에 이벤트 리스너 추가
